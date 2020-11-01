@@ -7,25 +7,18 @@ export const getProductById: APIGatewayProxyHandler = async (event, _context) =>
 
     const product = productList.find((product) => product.id === id);
 
-    if (product) {
-      return {
-        statusCode: 200,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true,
-        },
-        body: JSON.stringify(product),
-      };
+    if (!product) {
+      throw ({ message: 'Product not found', statusCode: 404 })
     }
 
     return {
-      statusCode: 404,
+      statusCode: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Credentials": true,
       },
-      body: "Page not found",
-    };
+      body: JSON.stringify(product),
+      };
   } catch (error) {
     return {
       statusCode: error.statusCode || 500,
