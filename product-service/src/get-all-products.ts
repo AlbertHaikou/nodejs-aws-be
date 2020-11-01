@@ -12,6 +12,9 @@ export const getProductsList: APIGatewayProxyHandler = async (_event, _context) 
       body: JSON.stringify(productList),
     };
   } catch (error) {
-    throw Error("Internal Server Error");
+    return {
+      statusCode: error.statusCode || 500,
+      body: error.message
+    };
   }
 };

@@ -27,6 +27,9 @@ export const getProductById: APIGatewayProxyHandler = async (event, _context) =>
       body: "Page not found",
     };
   } catch (error) {
-    throw Error("Internal Server Error");
+    return {
+      statusCode: error.statusCode || 500,
+      body: error.message
+    };
   }
 };
