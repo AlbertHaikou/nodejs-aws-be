@@ -36,3 +36,11 @@ functions:
             parameters: 
               paths: 
                 id: true
+  addProduct:
+    handler: handler.addProduct
+    events:
+      - http:
+          path: products
+          method: post
+          cors:
+            headers: "*"
