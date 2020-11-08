@@ -1,0 +1,58 @@
+[
+  {
+    "count": 4,
+    "description": "Short Product Description1",
+    "id": "1",
+    "price": 530,
+    "title": "Marlin 5",
+    "image": "https://trek.scene7.com/is/image/TrekBicycleProducts/Marlin5_21_33136_C_Primary"
+  },
+  {
+    "count": 6,
+    "description": "Short Product Description3",
+    "id": "2",
+    "price": 560,
+    "title": "XCaliber 7",
+    "image": "https://trek.scene7.com/is/image/TrekBicycleProducts/XCaliber7_21_33194_A_Primary"
+  },
+  {
+    "count": 7,
+    "description": "Short Product Description2",
+    "id": "3",
+    "price": 465,
+    "title": "Procaliber 96",
+    "image": "https://trek.scene7.com/is/image/TrekBicycleProducts/Procaliber96_21_33260_B_Primary"
+  },
+  {
+    "count": 12,
+    "description": "Short Product Description7",
+    "id": "4",
+    "price": 600,
+    "title": "Supercaliber 98GX",
+    "image": "https://trek.scene7.com/is/image/TrekBicycleProducts/Supercaliber98GX_21_33176_A_Primary"
+  },
+  {
+    "count": 7,
+    "description": "Short Product Description2",
+    "id": "5",
+    "price": 500,
+    "title": "Top Fuel 97NX",
+    "image": "https://trek.scene7.com/is/image/TrekBicycleProducts/TopFuel97NX_21_27919_B_Primary"
+  },
+  {
+    "count": 8,
+    "description": "Short Product Description4",
+    "id": "6",
+    "price": 550,
+    "title": "Supercaliber 99XX",
+    "image": "https://trek.scene7.com/is/image/TrekBicycleProducts/Supercaliber99XX1_21_33191_B_Primary"
+  },
+  {
+    "count": 2,
+    "description": "Short Product Descriptio1",
+    "id": "7",
+    "price": 600,
+    "title": "Top Fuel 98XT",
+    "image": "https://trek.scene7.com/is/image/TrekBicycleProducts/TopFuel98XT_21_32988_A_Primary"
+  }
+]
