@@ -5,6 +5,46 @@ provider:
   runtime: nodejs12.x
   stage: dev
   region: eu-west-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "sns:*"
+      Resource:
+        Ref: SNSTopic
+  environment:
+    PG_PORT: 5432
+    PG_DATABASE: lesson4
+    PG_USERNAME: postgres
+    AWS_SQS_NAME: 'node-aws-sqs-queue'
+    AWS_SNS_TOPIC: 'node-aws-product-topic'
+    AWS_SNS_ARN:
+      Ref: 'SNSTopic'
+
+resources:
+  Resources:
+    SQSQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: nodejs-aws-sqs-queue
+        ReceiveMessageWaitTimeSeconds: 20
+    SNSTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: nodejs-aws-sns-topic
+    SNSSubscription:
+      Type: AWS::SNS::Subscription
+      Properties:
+        Endpoint: gaolbertas@gmail.com
+        Protocol: email
+        TopicArn:
+          Ref: SNSTopic
+  Outputs:
+    SQSQueueUrl:
+      Value:
+        Ref: SQSQueue
+    SQSQueueArn:
+      Value:
+        Fn::GetAtt: [SQSQueue, Arn]
 
 plugins:
   - serverless-webpack
@@ -32,9 +72,9 @@ functions:
           method: get
           cors:
             headers: "*"
-          request: 
-            parameters: 
-              paths: 
+          request:
+            parameters:
+              paths:
                 id: true
   addProduct:
     handler: handler.addProduct
@@ -44,3 +84,12 @@ functions:
           method: post
           cors:
             headers: "*"
+  catalogBatchProcess:
+    handler: handler.catalogBatchProcess
+    events:
+      - sqs:
+          batchSize: 5
+          arn:
+            Fn::GetAtt:
+              - SQSQueue
+              - Arn

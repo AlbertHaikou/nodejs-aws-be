@@ -5,6 +5,8 @@ provider:
   runtime: nodejs12.x
   stage: dev
   region: eu-west-1
+  environment:
+    CATALOG_SQS_URL: '${cf:product-service-dev.SQSQueueUrl}'
   iamRoleStatements:
     - Effect: 'Allow'
       Action: 's3:ListBucket'
@@ -15,6 +17,10 @@ provider:
         - 's3:*'
       Resource:
         - 'arn:aws:s3:::aws-nodejs-app-uploaded/*'
+    - Effect: 'Allow'
+      Action: 'sqs:*'
+      Resource:
+        - '${cf:product-service-dev.SQSQueueArn}'
 
 plugins:
   - serverless-webpack
