@@ -1,0 +1,24 @@
+service: authorization-service
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: eu-west-1
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+    TEST_USER: process.env.TEST_USER
+    TEST_PASSWORD: process.env.TEST_PASSWORD
+
+plugins:
+  - serverless-webpack
+  - serverless-dotenv-plugin
+
+custom:
+  webpack:
+    webpackConfig: 'webpack.config.js'
+    includeModules: true
+
+functions:
+  basicAuthorizer:
+    handler: handler.basicAuthorizer
